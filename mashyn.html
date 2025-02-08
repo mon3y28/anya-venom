@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аня, можно? 🚗</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(45deg, #fbc2eb, #a6c1ee);
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #question {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .button {
+            font-size: 24px;
+            padding: 15px 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: absolute;
+        }
+
+        #yes {
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
+            color: white;
+            position: static;
+        }
+
+        #no, #finalNo {
+            background: linear-gradient(45deg, #ff1e56, #ff6a00);
+            color: white;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        #finalNo {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question">Аня, можно я покатаю машинку по твоей попе? 🚗</div>
+    <button id="yes" class="button" onclick="yesClick()">Да</button>
+    <button id="no" class="button" onclick="noClick()">Нет</button>
+    <button id="finalNo" class="button" onmouseover="escapeButton()">Ну ладно, нет так нет</button>
+
+    <script>
+        let noTexts = [
+            "Ты уверена? 😢",
+            "Ну подумай еще! 🥺",
+            "Ну хоть чуть-чуть? 🤔",
+            "А если осторожно? 😏",
+            "Пожалуйста, Аня! 😍"
+        ];
+        let noIndex = 0;
+        let noButton = document.getElementById("no");
+        let finalNoButton = document.getElementById("finalNo");
+
+        function yesClick() {
+            document.body.innerHTML = "<h1 style='font-size: 50px; color: #ff4081;'>🚗 Ура, спасибо! С 14 февраля тебя! 💖</h1>";
+        }
+
+        function noClick() {
+            if (noIndex < noTexts.length) {
+                noButton.innerText = noTexts[noIndex];
+                noIndex++;
+            } else {
+                noButton.style.display = "none";
+                finalNoButton.style.display = "block";
+            }
+        }
+
+        function escapeButton() {
+            let maxX = window.innerWidth - finalNoButton.clientWidth;
+            let maxY = window.innerHeight - finalNoButton.clientHeight;
+            let randomX = Math.random() * maxX;
+            let randomY = Math.random() * maxY;
+            finalNoButton.style.left = randomX + "px";
+            finalNoButton.style.top = randomY + "px";
+        }
+    </script>
+
+</body>
+</html>
